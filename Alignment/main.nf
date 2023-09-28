@@ -61,9 +61,9 @@ workflow {
         MULTIFASTQC(html_ch.mix(zip_ch).collect())
         trim_ch = TRIM(reads)
         FASTQ_SCREEN(trim_ch)
-        ALIGN(params.bismark_index, trim_ch)
-        align_ch=ALIGN.out.bam_files
-        align_report_ch=ALIGN.out.reports
+        BISMARK_ALIGN(params.bismark_index, trim_ch)
+        align_ch=BISMARK_ALIGN.out.bam_files
+        align_report_ch=BISMARK_ALIGN.out.reports
         sort_ch = SORT(align_ch)
         DEDUPLICATE(sort_ch)
         deduplicate_ch=DEDUPLICATE.out.bam_files
