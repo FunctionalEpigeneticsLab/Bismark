@@ -4,3 +4,4 @@ sampletype: "TBS"
 batch: ''
 workingDir: ''
 pattern: 'R'
+regions: ''
