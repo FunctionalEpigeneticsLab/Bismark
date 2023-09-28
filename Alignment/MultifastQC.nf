@@ -1,7 +1,7 @@
 process MULTIFASTQC {
         tag "Performing MultiFastQC..."
         container = "docker://staphb/multiqc"
-        publishDir "${baseDir}/FastQC", mode: 'copy'
+        publishDir "${baseDir}/FastQC/${params.batch}", mode: 'copy'
         input:
         path "*"
 
