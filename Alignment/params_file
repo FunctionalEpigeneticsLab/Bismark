@@ -1,7 +1,0 @@
-params {
-    genbuild = "hg38"
-    protocol = "bsseq"
-    sampletype = "TBS"
-    batch = ''
-    workingDir = ''
-}
