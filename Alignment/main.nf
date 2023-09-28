@@ -76,7 +76,6 @@ workflow {
         reports_ch=reports_ch.mix(align_report_ch, deduplicate_report_ch, align_ch, deduplicate_ch)
 
         REPORTSUMM(reports_ch.collect())
-        filtered_cov_ch = COVERAGEFILTER(extract_coverages_ch)
 }
 
 workflow.onComplete {
