@@ -14,6 +14,9 @@ params.reads="${params.workingDir}/*${params.pattern}{1,2}*.gz"
 reads=Channel.fromFilePairs(params.reads)
 workingDir="${params.workingDir}"
 bismark_index=Channel.fromPath(params.bismark_index)
+params.all_reads="${params.workingDir}/*R*.gz"
+all_reads=Channel.fromPath(params.reads)
+
 
 if (params.protocol == 'bsseq'){
     params.min_reads=20
