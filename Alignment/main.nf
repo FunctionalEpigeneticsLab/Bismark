@@ -69,9 +69,6 @@ workflow {
         deduplicate_ch=DEDUPLICATE.out.bam_files
         deduplicate_report_ch=DEDUPLICATE.out.reports
         on_targ_ch=COMPUTE_ON_TARGET(params.regions, align_ch.collect())
-        SORT_AND_INDEX(deduplicate_ch)
-        sorted_bam_ch = SORT_AND_INDEX.out.bam_files
-        indexed_bai_ch = SORT_AND_INDEX.out.bai_files
         EXTRACT(deduplicate_ch)
         extract_coverages_ch = EXTRACT.out.coverages
         extract_report_ch = EXTRACT.out.reports
