@@ -1,6 +1,6 @@
 process DEDUPLICATE {
         tag "Deduplicating..."
-        publishDir "${workingDir}/Bams/Deduplicated", mode: 'copy'
+        publishDir "${baseDir}/Bams/Deduplicated", mode: 'copy'
         container= "docker://nfcore/methylseq"
 
         input:

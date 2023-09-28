@@ -1,6 +1,6 @@
 process FILTER {
         tag "Filtering reads..."
-        publishDir "${workingDir}/Cache/Alignment/Filtered"
+        publishDir "${baseDir}/Cache/Alignment/Filtered"
         container = "docker://biocontainers/samtools"
         input:
         path bam_file

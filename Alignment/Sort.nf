@@ -1,6 +1,6 @@
 process SORT {
         tag "Sorting reads...."
-        publishDir "${workingDir}/Cache/Alignment/Sorted"
+        publishDir "${baseDir}/Cache/Alignment/Sorted"
         container = "docker://biocontainers/samtools"
         input:
         path bam_file

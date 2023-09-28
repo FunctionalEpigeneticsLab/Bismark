@@ -1,6 +1,6 @@
 process FASTQC {
         tag "Performing FastQC..."
-        publishDir "${workingDir}/Cache/FastQC"
+        publishDir "${baseDir}/Cache/FastQC"
         container = "docker://biocontainers/fastqc:latest"
         input:
         path(reads)

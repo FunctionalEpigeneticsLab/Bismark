@@ -1,7 +1,7 @@
 process REPORTSUMM {
         time '5min'
         tag "Summarizing..."
-        publishDir "${workingDir}/Reports", mode: 'copy'
+        publishDir "${baseDir}/Reports", mode: 'copy'
         container = "docker://nfcore/methylseq"
         input:
         path '*'

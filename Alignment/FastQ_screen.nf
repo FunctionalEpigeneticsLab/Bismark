@@ -1,6 +1,6 @@
 process FASTQ_SCREEN {
         tag "Screening FastQs..."
-        publishDir "${workingDir}/FastQC", mode: 'copy'
+        publishDir "${baseDir}/FastQC", mode: 'copy'
         container = "docker://singlecellpipeline/fastq_screen"
         input:
         tuple val(sample), path(file1), path(file2)
