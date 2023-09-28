@@ -3,3 +3,4 @@ protocol: "bsseq"
 sampletype: "TBS"
 batch: ''
 workingDir: ''
+pattern: 'R'
