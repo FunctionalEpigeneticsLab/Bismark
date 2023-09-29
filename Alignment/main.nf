@@ -68,7 +68,9 @@ workflow {
         DEDUPLICATE(sort_ch)
         deduplicate_ch=DEDUPLICATE.out.bam_files
         deduplicate_report_ch=DEDUPLICATE.out.reports
+        if(regions != ''){
         on_targ_ch=COMPUTE_ON_TARGET(params.regions, align_ch.collect())
+        }
         EXTRACT(deduplicate_ch)
         extract_coverages_ch = EXTRACT.out.coverages
         extract_report_ch = EXTRACT.out.reports
@@ -79,5 +81,5 @@ workflow {
 }
 
 workflow.onComplete {
-        log.info (workflow.success? "Done! View the summary report in the ${workingDir}/Reports folder!" : "Oops... something went wrong")
+        log.info (workflow.success? "Done! View the summary report in the ${baseDir}/Reports folder!" : "Oops... something went wrong")
 }
