@@ -1,1 +1,1 @@
-Template for using the bismark alignment pipeline for any project.
+Templates for several pipelines.
