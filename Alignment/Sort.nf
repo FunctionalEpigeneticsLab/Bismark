@@ -1,7 +1,7 @@
 process SORT {
         tag "Sorting reads...."
         publishDir "${baseDir}/Cache/Alignment/Sorted"
-        container = "docker://biocontainers/samtools:v1.9-4-deb_cv1"
+        container = "docker://kobedr/bismark_alignment_utils:latest"
         input:
         path bam_file
 

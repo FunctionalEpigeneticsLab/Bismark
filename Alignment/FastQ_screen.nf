@@ -1,7 +1,7 @@
 process FASTQ_SCREEN {
         tag "Screening FastQs..."
         publishDir "${baseDir}/FastQC", mode: 'copy'
-        container = "docker://singlecellpipeline/fastq_screen:v0.0.2"
+        container = "docker://kobedr/bismark_alignment_utils:latest"
         input:
         tuple val(sample), path(file1), path(file2)
         output:
