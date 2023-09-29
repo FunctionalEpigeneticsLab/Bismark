@@ -1,7 +1,7 @@
 process DEDUPLICATE {
         tag "Deduplicating..."
         publishDir "${baseDir}/Bams/Deduplicated", mode: 'copy'
-        container= "docker://nfcore/methylseq"
+        container= "docker://nfcore/methylseq:latest"
 
         input:
         path bam_file

@@ -1,7 +1,7 @@
 process COMPUTE_ON_TARGET {
         tag "Computing on-target rate..."
         publishDir "${baseDir}/CoverageMetrics", mode: 'copy'
-        container = "docker://r-base"
+        container = "docker://r-base:latest"
         input:
         path regions
         path "*"
