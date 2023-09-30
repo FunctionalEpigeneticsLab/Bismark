@@ -9,6 +9,6 @@ process FASTQ_SCREEN {
 
         script:
         """
-        fastq_screen --bisulfite --outdir . --threads ${task.cpus} $file1 $file2
+        /opt/conda/envs/fastq_screen/bin/fastq_screen --bisulfite --outdir . --threads ${task.cpus} $file1 $file2
         """
 }
