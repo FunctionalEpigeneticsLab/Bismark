@@ -72,7 +72,7 @@ workflow {
         deduplicate_ch=DEDUPLICATE.out.bam_files
         puc_lambda_ch = GET_PUC_LAMBDA(deduplicate_ch.collect())
         deduplicate_report_ch=DEDUPLICATE.out.reports
-        if(regions != ''){
+        if(params.regions != ''){
         on_targ_ch=COMPUTE_ON_TARGET(params.regions, align_ch.collect())
         }
         EXTRACT(deduplicate_ch)
