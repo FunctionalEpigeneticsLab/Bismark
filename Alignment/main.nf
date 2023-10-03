@@ -78,8 +78,8 @@ workflow {
         reports_ch=extract_report_ch
         reports_ch=reports_ch.mix(align_report_ch, deduplicate_report_ch, align_ch, deduplicate_ch)
 
-
-        total_report_ch = REPORTSUMM(reports_ch.collect())
+        REPORTSUMM(reports_ch.collect())
+        total_report_ch = REPORTSUMM.out.reports
         COMBINE_METADATA(extract_coverages_ch.collect(), puc_lambda_ch, total_report_ch)
 
 }
