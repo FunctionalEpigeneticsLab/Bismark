@@ -11,6 +11,6 @@ process GET_PUC_LAMBDA {
 
         script:
         """
-         bash $baseDir/Scripts/get_puc_lambda_derived_reads_main.sh
+         bash ./Scripts/get_puc_lambda_derived_reads_main.sh
         """
 }
