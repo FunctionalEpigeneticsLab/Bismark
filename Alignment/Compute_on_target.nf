@@ -1,7 +1,7 @@
 process COMPUTE_ON_TARGET {
         tag "Computing on-target rate..."
         publishDir "${baseDir}/Reports/${params.batch}", mode: 'copy'
-        container = "docker://kobedr/bismark_alignment_utils:latest"
+        container = "docker://kobedr/bismark_alignment_biocond:latest"
         input:
         path regions
         path "*"

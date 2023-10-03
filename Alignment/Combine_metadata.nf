@@ -1,7 +1,7 @@
 process COMBINE_METADATA {
         tag "Produce metadata..."
         publishDir "${baseDir}/Reports/${params.batch}", mode: 'copy'
-        container = "docker://kobedr/bismark_alignment_utils:latest"
+        container = "docker://kobedr/bismark_alignment_biocond:latest"
         input:
         path "*"
         path puc_lambda
