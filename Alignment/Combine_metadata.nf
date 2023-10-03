@@ -12,6 +12,6 @@ process COMBINE_METADATA {
 
         script:
         """
-         Rscript $baseDir/metadata_production.r 
+         Rscript $baseDir/Scripts/metadata_production.r 
         """
 }

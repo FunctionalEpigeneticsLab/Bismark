@@ -10,7 +10,12 @@ process GET_PUC_LAMBDA {
         path "puc_lambda.csv"
 
         script:
-        """
-         bash ./Scripts/get_puc_lambda_derived_reads_main.sh
-        """
+        '''
+        cp ./Scripts/puc_lambda_header.csv ./puc_lambda.csv
+        for i in $(ls *.bam)
+        do
+        echo -e "${i},$(samtools view $i | grep Lambda),$(samtools view $i | grep pUC)" >> puc_lambda.csv &
+        done
+        wait
+        '''
 }
