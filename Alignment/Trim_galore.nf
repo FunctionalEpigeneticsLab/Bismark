@@ -1,7 +1,7 @@
 process TRIM {
         tag "Trimming reads..."
         container = 'docker://clinicalgenomics/trim_galore:0.6.7'
-        publishDir "${baseDir}/Cache/Trimmed"
+        publishDir "${baseDir}/Cache/Trimmed/${params.batch}"
         input:
         tuple val(sample), path(reads)
         output:

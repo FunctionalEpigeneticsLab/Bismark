@@ -1,6 +1,6 @@
 process FILTER {
         tag "Filtering reads..."
-        publishDir "${baseDir}/Cache/Alignment/Filtered"
+        publishDir "${baseDir}/Cache/Alignment/Filtered/${params.batch}"
         container = "docker://kobedr/bismark_alignment_utils:latest"
         input:
         path bam_file

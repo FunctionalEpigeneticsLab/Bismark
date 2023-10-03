@@ -1,6 +1,6 @@
 process BISMARK_ALIGN {
         tag "Aligning using Bismark..."
-        publishDir "${baseDir}/Cache/Alignment/Raw"
+        publishDir "${baseDir}/Cache/Alignment/Raw/${params.batch}"
         container = "docker://nfcore/methylseq:latest"
         input:
         path bismark_index

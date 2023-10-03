@@ -1,6 +1,6 @@
 process SORT {
         tag "Sorting reads...."
-        publishDir "${baseDir}/Cache/Alignment/Sorted"
+        publishDir "${baseDir}/Cache/Alignment/Sorted/${params.batch}"
         container = "docker://kobedr/bismark_alignment_utils:latest"
         input:
         path bam_file
