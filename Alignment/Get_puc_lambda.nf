@@ -14,7 +14,7 @@ process GET_PUC_LAMBDA {
         cp ./Scripts/puc_lambda_header.csv ./puc_lambda.csv
         for i in $(ls *.bam)
         do
-        echo -e "${i},$(samtools view $i | grep Lambda),$(samtools view $i | grep pUC)" >> puc_lambda.csv &
+        echo -e "${i},$(samtools view $i | grep Lambda | wc -l),$(samtools view $i | grep pUC | wc -l)" >> puc_lambda.csv &
         done
         wait
         '''
