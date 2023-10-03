@@ -16,8 +16,9 @@ workingDir="${params.workingDir}"
 bismark_index=Channel.fromPath(params.bismark_index)
 params.all_reads="${params.workingDir}/*R*.gz"
 all_reads=Channel.fromPath(params.reads)
+if (params.regions !=''){
 regions = Channel.fromPath(params.regions)
-
+}
 if (params.protocol == 'bsseq'){
     params.min_reads=20
     params.samtools_filter='-F 4 -F 256 -q 30'
