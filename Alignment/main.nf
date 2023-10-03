@@ -67,6 +67,7 @@ workflow {
         sort_ch = SORT(align_ch)
         DEDUPLICATE(sort_ch)
         deduplicate_ch=DEDUPLICATE.out.bam_files
+        puc_lambda_ch = GET_PUC_LAMBDA(deduplicate_ch.collect())
         deduplicate_report_ch=DEDUPLICATE.out.reports
         if(regions != ''){
         on_targ_ch=COMPUTE_ON_TARGET(params.regions, align_ch.collect())
@@ -77,7 +78,10 @@ workflow {
         reports_ch=extract_report_ch
         reports_ch=reports_ch.mix(align_report_ch, deduplicate_report_ch, align_ch, deduplicate_ch)
 
-        REPORTSUMM(reports_ch.collect())
+
+        total_report_ch = REPORTSUMM(reports_ch.collect())
+        COMBINE_METADATA(extract_coverages_ch.collect(), puc_lambda_ch, total_report_ch)
+
 }
 
 workflow.onComplete {

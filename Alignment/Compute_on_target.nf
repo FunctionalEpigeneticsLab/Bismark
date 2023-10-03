@@ -1,13 +1,13 @@
 process COMPUTE_ON_TARGET {
         tag "Computing on-target rate..."
-        publishDir "${baseDir}/CoverageMetrics", mode: 'copy'
+        publishDir "${baseDir}/CoverageMetrics/${params.batch}", mode: 'copy'
         container = "docker://kobedr/bismark_alignment_utils:latest"
         input:
         path regions
         path "*"
 
         output:
-        path "*.tsv"
+        path "on_target.tsv"
 
 
         script:
