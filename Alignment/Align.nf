@@ -12,6 +12,6 @@ process BISMARK_ALIGN {
 
         script:
         """
-        bismark ${params.bismark_align} --multicore 8 --dovetail -bam --genome $bismark_index -1 $file1 -2 $file2
+        bismark ${params.bismark_align} --multicore ${task.cpus} --dovetail -bam --genome $bismark_index -1 $file1 -2 $file2
         """
 }

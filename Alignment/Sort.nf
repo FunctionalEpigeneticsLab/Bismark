@@ -10,7 +10,7 @@ process SORT {
 
         script:
         """
-        samtools sort -n $bam_file > tmp
+        samtools sort -@ ${task.cpus} -n $bam_file > tmp
         mv tmp $bam_file
         """
 }

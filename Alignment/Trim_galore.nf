@@ -9,6 +9,6 @@ process TRIM {
 
         script:
         """
-        trim_galore --clip_R1 ${params.clip_R1} --clip_R2 ${params.clip_R2} --three_prime_clip_R1 ${params.three_prime_clip_R1} --three_prime_clip_R2 ${params.three_prime_clip_R2} --paired ${reads[0]} ${reads[1]}
+        trim_galore --clip_R1 ${params.clip_R1} --clip_R2 ${params.clip_R2} --cores ${task.cpus} --three_prime_clip_R1 ${params.three_prime_clip_R1} --three_prime_clip_R2 ${params.three_prime_clip_R2} --paired ${reads[0]} ${reads[1]}
         """
 }

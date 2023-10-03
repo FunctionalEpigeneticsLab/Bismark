@@ -60,7 +60,7 @@ workflow {
         zip_ch=FASTQC.out.zips
         MULTIFASTQC(html_ch.mix(zip_ch).collect())
         trim_ch = TRIM(reads)
-        FASTQ_SCREEN(trim_ch)
+//        FASTQ_SCREEN(trim_ch)
         BISMARK_ALIGN(params.bismark_index, trim_ch)
         align_ch=BISMARK_ALIGN.out.bam_files
         align_report_ch=BISMARK_ALIGN.out.reports
