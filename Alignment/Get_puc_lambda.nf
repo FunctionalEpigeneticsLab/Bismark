@@ -4,6 +4,7 @@ process GET_PUC_LAMBDA {
         container = "docker://kobedr/bismark_alignment_utils:latest"
         input:
         path "*"
+        path scripts
 
         output:
         path "puc_lambda.csv"

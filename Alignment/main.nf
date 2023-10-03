@@ -12,7 +12,7 @@ if (params.protocol == 'EMseq'){
         params.bismark_index="/staging/leuven/stg_00064/Kobe_2/db/reference/hg38/broad"
 
 }
-
+scripts = "${baseDir}/Scripts"
 params.reads="${params.workingDir}/*${params.pattern}{1,2}*.gz"
 reads=Channel.fromFilePairs(params.reads)
 workingDir="${params.workingDir}"
@@ -73,7 +73,7 @@ workflow {
         sort_ch = SORT(align_ch)
         DEDUPLICATE(sort_ch)
         deduplicate_ch=DEDUPLICATE.out.bam_files
-        puc_lambda_ch = GET_PUC_LAMBDA(deduplicate_ch.collect())
+        puc_lambda_ch = GET_PUC_LAMBDA(deduplicate_ch.collect(), scripts)
         deduplicate_report_ch=DEDUPLICATE.out.reports
         if(params.regions != ''){
         on_targ_ch=COMPUTE_ON_TARGET(params.regions, align_ch.collect())
