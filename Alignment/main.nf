@@ -46,6 +46,8 @@ include { MULTIFASTQC } from './MultifastQC.nf'
 include { REPORTSUMM } from './ReportSummary.nf'
 include { SORT } from './Sort.nf'
 include { TRIM } from './Trim_galore.nf'
+include { GET_PUC_LAMBDA } from './Get_puc_lambda.nf'
+include { COMBINE_METADATA } from './Combine_metadata.nf'
 
 log.info """\
     B I S M A R K  A L I G N  P I P E L I N E
