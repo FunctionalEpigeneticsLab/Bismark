@@ -1,0 +1,14 @@
+## hg38, hg19 or mm39
+genbuild: "hg38"
+## bsseq or EMseq
+protocol: "bsseq"
+## TBS or WGBS
+sampletype: "TBS"
+## Batch name
+batch: ''
+## Working directory
+workingDir: ''
+## Pattern distinguising R1 and R2
+pattern: 'R'
+## Capture regions
+regions: ''
