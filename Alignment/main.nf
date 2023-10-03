@@ -10,6 +10,9 @@ if (genbuild == 'mm39'){
         params.bismark_index="/staging/leuven/stg_00064/Kobe_2/db/reference/hg38/broad"
 
 }
+if (params.protocol == 'EMseq'){
+        params.bismark_index="/staging/leuven/stg_00064/Kobe_2/db/reference/hg38/EMseq"
+}
 params.reads="${params.workingDir}/*${params.pattern}{1,2}*.gz"
 reads=Channel.fromFilePairs(params.reads)
 workingDir="${params.workingDir}"
