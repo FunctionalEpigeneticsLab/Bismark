@@ -1,3 +1,38 @@
+readBismarkCoverage<-function( location,sample.id,assembly="unknown",treatment,
+                                    context="CpG",min.cov=10)
+{
+  if(length(location)>1){
+    stopifnot(length(location)==length(sample.id),
+              length(location)==length(treatment))
+  }
+
+  result=list()
+  for(i in 1:length(location)){
+    df=fread.gzipped(location[[i]],data.table=FALSE)
+
+    # remove low coverage stuff
+    df=df[ (df[,5]+df[,6]) >= min.cov ,]
+
+
+
+
+    # make the object (arrange columns of df), put it in a list
+    result[[i]]= new("methylRaw",data.frame(chr=df[,1],start=df[,2],end=df[,3],
+                               strand="*",coverage=(df[,5]+df[,6]),
+                               numCs=df[,5],numTs=df[,6]),
+        sample.id=sample.id[[i]],
+        assembly=assembly,context=context,resolution="base"
+        )
+  }
+
+  if(length(result) == 1){
+    return(result[[1]])
+  }else{
+
+    new("methylRawList",result,treatment=treatment)
+  }
+
+}
 reports = read.delim('bismark_summary_report.txt')
 reports$Sample = unlist(lapply(reports$File, function(x){paste(unlist(strsplit(x, split = '_'))[1:2],collapse = '_')}))
 rownames(reports) <- reports$Sample
