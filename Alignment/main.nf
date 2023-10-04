@@ -91,5 +91,5 @@ workflow {
 }
 
 workflow.onComplete {
-        log.info (workflow.success? "Done! View the summary report in the ${baseDir}/Reports folder!" : "Oops... something went wrong")
+        log.info (workflow.success? "Done! View the summary report in the ${baseDir}/Results/Reports/${params.batch} folder!" : "Oops... something went wrong")
 }
