@@ -39,18 +39,18 @@ if (params.protocol == 'bsseq'){
     params.three_prime_clip_R1=15
     params.three_prime_clip_R2=13
 }
-include { BISMARK_ALIGN   } from './Align.nf'
-include { COMPUTE_ON_TARGET   } from './Compute_on_target.nf'
-include { DEDUPLICATE   } from './Deduplicate.nf'
-include { FASTQ_SCREEN } from './FastQ_screen.nf'
-include { FASTQC } from './FastQC.nf'
-include { EXTRACT } from './Methylation_extract.nf'
-include { MULTIFASTQC } from './MultifastQC.nf'
-include { REPORTSUMM } from './ReportSummary.nf'
-include { SORT } from './Sort.nf'
-include { TRIM } from './Trim_galore.nf'
-include { GET_PUC_LAMBDA } from './Get_puc_lambda.nf'
-include { COMBINE_METADATA } from './Combine_metadata.nf'
+include { BISMARK_ALIGN   } from './Processes/Align.nf'
+include { COMPUTE_ON_TARGET   } from './Processes/Compute_on_target.nf'
+include { DEDUPLICATE   } from './Processes/Deduplicate.nf'
+include { FASTQ_SCREEN } from './Processes/FastQ_screen.nf'
+include { FASTQC } from './Processes/FastQC.nf'
+include { EXTRACT } from './Processes/Methylation_extract.nf'
+include { MULTIFASTQC } from './Processes/MultifastQC.nf'
+include { REPORTSUMM } from './Processes/ReportSummary.nf'
+include { SORT } from './Processes/Sort.nf'
+include { TRIM } from './Processes/Trim_galore.nf'
+include { GET_PUC_LAMBDA } from './Processes/Get_puc_lambda.nf'
+include { COMBINE_METADATA } from './Processes/Combine_metadata.nf'
 
 log.info """\
     B I S M A R K  A L I G N  P I P E L I N E
