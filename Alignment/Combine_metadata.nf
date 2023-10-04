@@ -6,12 +6,13 @@ process COMBINE_METADATA {
         path "*"
         path puc_lambda
         path summary_report
+        path scripts
 
         output:
         path "metadata.csv"
 
         script:
         """
-         Rscript $baseDir/Scripts/metadata_production.r 
+         Rscript ./Scripts/metadata_production.r 
         """
 }
