@@ -1,3 +1,1 @@
-Templates for several pipelines.
-Currently:
-    - Bismark alignment
+Bismark alignment pipeline.
