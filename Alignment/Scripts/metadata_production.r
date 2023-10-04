@@ -1,3 +1,26 @@
+fread.gzipped<-function(filepath,...){
+  require(R.utils)
+  require(data.table)
+
+
+
+  # decompress first, fread can't read gzipped files
+  if (R.utils::isGzipped(filepath)){
+
+    if(.Platform$OS.type == "unix") {
+      filepath=paste("zcat",filepath)
+      } else {
+          filepath <- R.utils::gunzip(filepath,temporary = FALSE, overwrite = TRUE,
+                                remove = FALSE)
+    }
+
+
+  }
+
+  ## Read in the file
+  fread(filepath,...)
+
+}
 readBismarkCoverage<-function( location,sample.id,assembly="unknown",treatment,
                                     context="CpG",min.cov=10)
 {
