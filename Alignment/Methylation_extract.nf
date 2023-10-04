@@ -1,6 +1,6 @@
 process EXTRACT {
         tag "Extracting methylation...."
-        publishDir "${baseDir}/Methextracts/${params.batch}", mode: 'copy'
+        publishDir "${baseDir}/Results/Methextracts/${params.batch}", mode: 'copy'
         container = "docker://nfcore/methylseq:latest"
         input:
         path bam_file

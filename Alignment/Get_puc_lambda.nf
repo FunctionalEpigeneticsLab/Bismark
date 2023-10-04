@@ -1,6 +1,6 @@
 process GET_PUC_LAMBDA {
         tag "Produce metadata..."
-        publishDir "${baseDir}/Cache/pUC_Lambda/${params.batch}"
+        publishDir "${baseDir}/Results/Cache/pUC_Lambda/${params.batch}"
         container = "docker://kobedr/bismark_alignment_utils:latest"
         input:
         path "*"
