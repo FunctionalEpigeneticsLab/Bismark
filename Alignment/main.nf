@@ -86,7 +86,7 @@ workflow {
 
         REPORTSUMM(reports_ch.collect())
         total_report_ch = REPORTSUMM.out.reports
-        COMBINE_METADATA(extract_coverages_ch.collect(), puc_lambda_ch, total_report_ch, params.scripts)
+        COMBINE_METADATA(extract_coverages_ch.collect(), puc_lambda_ch, total_report_ch, scripts)
 
 }
 
