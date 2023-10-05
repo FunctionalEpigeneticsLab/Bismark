@@ -13,5 +13,8 @@ process REGIONAL_SUBSET {
         script:
         """
         samtools view -@ ${task.cpus} -b -h -L $regions $bam > subset_${bam}
+        samtools sort subset_${bam} > sorted_tmp
+        mv sorted_tmp subset_${bam}
+        samtools index subset_${bam}
         """
 }
