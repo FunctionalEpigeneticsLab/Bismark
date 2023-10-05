@@ -53,7 +53,7 @@ include { GET_PUC_LAMBDA } from './Processes/Get_puc_lambda.nf'
 include { COMBINE_METADATA } from './Processes/Combine_metadata.nf'
 include { REGIONAL_SUBSET } from './Processes/Subset_regions.nf'
 include { REGIONAL_READS } from './Processes/Compute_regional_reads.nf'
-include { DEPTH_OF_COVERAGE_GATK } from './Processess/Compute_regional_coverage.nf'
+include { DEPTH_OF_COVERAGE_GATK } from './Processes/Compute_regional_coverage.nf'
 log.info """\
     B I S M A R K  A L I G N  P I P E L I N E
     ==========================================
