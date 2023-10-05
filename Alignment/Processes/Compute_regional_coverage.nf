@@ -1,5 +1,5 @@
 process DEPTH_OF_COVERAGE {
-        tag "Computing reads on target..."
+        tag "Computing coverage on target..."
         publishDir "${baseDir}/Results/Cache/Coverage/${params.batch}", mode: 'copy'
         container = "docker://kobedr/bismark_alignment_utils:latest"
         input:
