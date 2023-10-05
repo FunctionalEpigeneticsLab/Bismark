@@ -2,8 +2,8 @@ process BISMARK_ALIGN {
         tag "Aligning using Bismark..."
         publishDir "${baseDir}/Results/Cache/Alignment/Raw/${params.batch}"
         container = "docker://nfcore/methylseq:latest"
-        if(task.cpus <=20){
-                multicores = task.cpus
+        if(${task.cpus} <=20){
+                multicores = ${task.cpus}
         } else {
                 multicores = 20
         }
