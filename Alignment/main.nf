@@ -53,7 +53,7 @@ include { GET_PUC_LAMBDA } from './Processes/Get_puc_lambda.nf'
 include { COMBINE_METADATA } from './Processes/Combine_metadata.nf'
 include { REGIONAL_SUBSET } from './Processes/Subset_regions.nf'
 include { REGIONAL_READS } from './Processes/Compute_regional_reads.nf'
-include { DEPTH_OF_COVERAGE_GATK } from './Processes/Compute_regional_coverage.nf'
+include { DEPTH_OF_COVERAGE } from './Processes/Compute_regional_coverage.nf'
 log.info """\
     B I S M A R K  A L I G N  P I P E L I N E
     ==========================================
@@ -80,7 +80,7 @@ workflow {
         if(params.regions != ''){
         on_targ_ch=COMPUTE_ON_TARGET(params.regions, align_ch.collect())
         subs_ch = REGIONAL_SUBSET(params.regions, deduplicate_ch)
-        DEPTH_OF_COVERAGE_GATK(params.regions, subs_ch, params.bismark_index)
+        DEPTH_OF_COVERAGE(params.regions, subs_ch, params.bismark_index)
         REGIONAL_READS(subs_ch.collect())
         }
         EXTRACT(deduplicate_ch)
