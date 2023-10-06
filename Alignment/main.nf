@@ -83,7 +83,7 @@ workflow {
         subs_ch = REGIONAL_SUBSET(params.regions, deduplicate_ch)
         doc_ch = DEPTH_OF_COVERAGE(params.regions, subs_ch, params.bismark_index)
         REGIONAL_READS(subs_ch.collect())
-        COMBINE_MEAN_REGIONAL_COVERAGES(doc_ch.collect())
+        COMBINE_MEAN_REGIONAL_COVERAGES(doc_ch.collect(), scripts)
         }
         EXTRACT(deduplicate_ch)
         extract_coverages_ch = EXTRACT.out.coverages
