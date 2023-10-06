@@ -12,7 +12,7 @@ process COMBINE_MEAN_REGIONAL_COVERAGES {
         """
         for i in \$(ls *.summary)
         do
-        echo -e "$i\t\$(R -e \"df = read.delim($i);mean(as.numeric(df$V5))\")" >> on_target.coverages &
+        echo -e "\$i\t\$(R -e \"df = read.delim(\$i);mean(as.numeric(df\$V5))\")" >> on_target.coverages &
         done
         wait
         """
