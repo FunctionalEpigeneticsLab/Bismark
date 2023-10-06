@@ -50,7 +50,11 @@ include { REPORTSUMM } from './Processes/ReportSummary.nf'
 include { SORT } from './Processes/Sort.nf'
 include { TRIM } from './Processes/Trim_galore.nf'
 include { GET_PUC_LAMBDA } from './Processes/Get_puc_lambda.nf'
-include { COMBINE_METADATA } from './Processes/Combine_metadata.nf'
+if(regions==''){
+        include { COMBINE_METADATA } from './Processes/Combine_metadata.nf'
+} else {
+       include { COMBINE_METADATA_REGIONS as COMBINE_METADATA } from './Processes/Combine_metadata.nf' 
+}
 include { REGIONAL_SUBSET } from './Processes/Subset_regions.nf'
 include { REGIONAL_READS } from './Processes/Compute_regional_reads.nf'
 include { DEPTH_OF_COVERAGE } from './Processes/Compute_regional_coverage.nf'
@@ -82,8 +86,8 @@ workflow {
         on_targ_ch=COMPUTE_ON_TARGET(params.regions, align_ch.collect())
         subs_ch = REGIONAL_SUBSET(params.regions, deduplicate_ch)
         doc_ch = DEPTH_OF_COVERAGE(params.regions, subs_ch, params.bismark_index)
-        REGIONAL_READS(subs_ch.collect())
-        COMBINE_MEAN_REGIONAL_COVERAGES(doc_ch.collect(), scripts)
+        reg_reads_ch = REGIONAL_READS(subs_ch.collect())
+        comb_cov_ch = COMBINE_MEAN_REGIONAL_COVERAGES(doc_ch.collect(), scripts)
         }
         EXTRACT(deduplicate_ch)
         extract_coverages_ch = EXTRACT.out.coverages
@@ -93,7 +97,11 @@ workflow {
 
         REPORTSUMM(reports_ch.collect())
         total_report_ch = REPORTSUMM.out.reports
+        if(params.regions != ''){
+        COMBINE_METADATA(extract_coverages_ch.collect(), puc_lambda_ch, total_report_ch, scripts,on_targ_ch, reg_reads_ch, comb_cov_ch)
+        } else {
         COMBINE_METADATA(extract_coverages_ch.collect(), puc_lambda_ch, total_report_ch, scripts)
+        }
 
 }
 
