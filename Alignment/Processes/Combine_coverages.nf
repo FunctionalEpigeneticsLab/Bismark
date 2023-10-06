@@ -13,7 +13,7 @@ process COMBINE_MEAN_REGIONAL_COVERAGES {
         """
         for i in \$(ls *.summary)
         do
-        Rscript ./Scripts/combine_coverages.r \$i &
+        Rscript ./Scripts/combine_coverages.r \$i
         done
         """
 }
