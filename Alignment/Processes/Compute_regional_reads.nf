@@ -13,7 +13,7 @@ process REGIONAL_READS {
         '''
         for i in $(ls *.bam)
         do
-        echo -e "$i\t$(samtools view $i | wc - l)" >> reads_on_target.tsv &
+        echo -e "$if\\t$(samtools view $i | wc -l)" >> reads_on_target.tsv &
         done
         '''
 }

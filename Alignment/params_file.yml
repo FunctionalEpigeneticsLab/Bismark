@@ -10,5 +10,3 @@ batch: ''
 workingDir: ''
 ## Pattern distinguising R1 and R2
 pattern: 'R'
-## Capture regions
-regions: ''
