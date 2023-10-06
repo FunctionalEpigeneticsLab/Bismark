@@ -1,6 +1,6 @@
 process REGIONAL_READS {
         tag "Computing reads on target..."
-        publishDir "${baseDir}/Results/Reports/${params.batch}", mode: 'copy'
+        publishDir "${baseDir}/Results/Cache/Reports/${params.batch}"
         container = "docker://kobedr/bismark_alignment_utils:latest"
         input:
         path "*"

@@ -1,6 +1,6 @@
 process DEPTH_OF_COVERAGE {
         tag "Computing coverage on target..."
-        publishDir "${baseDir}/Results/Cache/Coverage/${params.batch}", mode: 'copy'
+        publishDir "${baseDir}/Results/Cache/Coverage/${params.batch}"
         container = "docker://kobedr/bismark_alignment_utils:latest"
         input:
         path regions

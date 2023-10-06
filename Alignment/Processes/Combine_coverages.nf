@@ -1,6 +1,6 @@
 process COMBINE_MEAN_REGIONAL_COVERAGES {
         tag "Combining coverages..."
-        publishDir "${baseDir}/Results/Reports/${params.batch}", mode: 'copy'
+        publishDir "${baseDir}/Results/Cache/Reports/${params.batch}"
         container = "docker://kobedr/bismark_alignment_biocond:latest"
         input:
         path "*"
