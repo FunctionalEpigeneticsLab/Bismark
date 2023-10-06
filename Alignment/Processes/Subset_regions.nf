@@ -7,7 +7,7 @@ process REGIONAL_SUBSET {
         path bam
 
         output:
-        tuple path("subset_${bam}"), path("subset_${bam}.bai")
+        tuple path("subset*.bam"), path("subset*.bai")
 
 
         script:
