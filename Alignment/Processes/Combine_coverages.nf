@@ -4,7 +4,7 @@ process COMBINE_MEAN_REGIONAL_COVERAGES {
         container = "docker://kobedr/bismark_alignment_biocond:latest"
         input:
         path "*"
-        scripts
+        path scripts
 
         output:
         path "on_target.coverages"
