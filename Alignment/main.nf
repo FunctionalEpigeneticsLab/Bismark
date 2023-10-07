@@ -50,7 +50,7 @@ include { REPORTSUMM } from './Processes/ReportSummary.nf'
 include { SORT } from './Processes/Sort.nf'
 include { TRIM } from './Processes/Trim_galore.nf'
 include { GET_PUC_LAMBDA } from './Processes/Get_puc_lambda.nf'
-if(regions==''){
+if(params.regions==''){
         include { COMBINE_METADATA } from './Processes/Combine_metadata.nf'
 } else {
        include { COMBINE_METADATA_REGIONS as COMBINE_METADATA } from './Processes/Combine_metadata.nf' 
