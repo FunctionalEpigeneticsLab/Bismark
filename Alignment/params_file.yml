@@ -12,3 +12,5 @@ workingDir: ''
 pattern: 'R'
 ## Regions
 regions: ''
+## FastQscreen (on/off)
+fastq_s: 'off'
