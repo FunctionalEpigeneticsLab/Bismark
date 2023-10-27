@@ -9,6 +9,7 @@ process FASTQ_SCREEN {
 
         script:
         """
+        export PATH=/staging/leuven/stg_00064/Kobe_2/miniconda3/bin:$PATH
         /staging/leuven/stg_00064/Kobe_2/github/Nextflow/projects/Archive/nextflow_image/opt/conda/envs/fastq_screen/bin/fastq_screen --bisulfite --outdir . --threads ${task.cpus} $file1 $file2
         """
 }
