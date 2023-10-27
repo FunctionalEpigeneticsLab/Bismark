@@ -60,7 +60,7 @@ reports = read.delim('bismark_summary_report.txt')
 reports$Sample = unlist(lapply(reports$File, function(x){paste(unlist(strsplit(x, split = '_'))[1:2],collapse = '_')}))
 rownames(reports) <- reports$Sample
 both = reports
-both$Duplication_rate = both$Duplicate.Reads..removed. / both$Aligned.Reads
+both$Duplication_rate = (both$Duplicate.Reads..removed. / both$Aligned.Reads)*100
 convert_separated_regions <- function (x, split = "_", type = "gr") 
 {
     library(GenomicRanges)
