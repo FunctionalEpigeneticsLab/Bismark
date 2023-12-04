@@ -2,6 +2,7 @@ nextflow.enable.dsl=2
 genbuild = params.genbuild
 if (params.protocol == 'EMseq'){
         params.bismark_index="/staging/leuven/stg_00064/Kobe_2/db/reference/hg38/EMseq"
+        params.genbuild = 'hg38'
 } else if (genbuild == 'mm39'){
         params.bismark_index = "/staging/leuven/stg_00064/Kobe_2/db/reference/mm39"
 
@@ -13,6 +14,8 @@ if (params.protocol == 'EMseq'){
 
 }
 scripts = "${baseDir}/Scripts"
+thisf = "${baseDir}"
+
 params.reads="${params.workingDir}/*${params.pattern}{1,2}*.gz"
 reads=Channel.fromFilePairs(params.reads)
 workingDir="${params.workingDir}"
@@ -56,6 +59,7 @@ if(params.regions==''){
        include { COMBINE_METADATA_REGIONS as COMBINE_METADATA } from './Processes/Combine_metadata.nf' 
 }
 include { REGIONAL_SUBSET } from './Processes/Subset_regions.nf'
+include { REGIONAL_SUBSET_DUPLICATED } from './Processes/Subset_regions.nf'
 include { REGIONAL_READS } from './Processes/Compute_regional_reads.nf'
 include { DEPTH_OF_COVERAGE } from './Processes/Compute_regional_coverage.nf'
 include { COMBINE_MEAN_REGIONAL_COVERAGES } from './Processes/Combine_coverages.nf'
@@ -88,6 +92,9 @@ workflow {
         if(params.regions != ''){
         on_targ_ch=COMPUTE_ON_TARGET(params.regions, align_ch.collect())
         subs_ch = REGIONAL_SUBSET(params.regions, deduplicate_ch)
+        subs2_ch = REGIONAL_SUBSET_DUPLICATED(params.regions, align_ch)
+        subs2_ch.join(subs_ch)
+
         doc_ch = DEPTH_OF_COVERAGE(params.regions, subs_ch, params.bismark_index)
         reg_reads_ch = REGIONAL_READS(subs_ch.collect())
         comb_cov_ch = COMBINE_MEAN_REGIONAL_COVERAGES(doc_ch.collect(), scripts)

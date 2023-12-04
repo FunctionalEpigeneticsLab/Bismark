@@ -4,7 +4,7 @@ process DEDUPLICATE {
         container= "docker://nfcore/methylseq:latest"
 
         input:
-        path bam_file
+        tuple val(sample), path(bam_file)
         output:
         path "*.deduplicated.bam", emit: bam_files
         path "*.txt", emit: reports

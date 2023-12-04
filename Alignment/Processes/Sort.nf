@@ -3,7 +3,7 @@ process SORT {
         publishDir "${baseDir}/Results/Cache/Alignment/Sorted/${params.batch}"
         container = "docker://kobedr/bismark_alignment_utils:latest"
         input:
-        path bam_file
+        tuple val(sample), path(bam_file)
 
         output:
         path "${bam_file}"
