@@ -60,6 +60,8 @@ if(params.regions==''){
 }
 include { REGIONAL_SUBSET } from './Processes/Subset_regions.nf'
 include { REGIONAL_SUBSET_DUPLICATED } from './Processes/Subset_regions.nf'
+include { DUPLICATION_ON_TARGET } from './Processes/Subset_regions.nf'
+
 include { REGIONAL_READS } from './Processes/Compute_regional_reads.nf'
 include { DEPTH_OF_COVERAGE } from './Processes/Compute_regional_coverage.nf'
 include { COMBINE_MEAN_REGIONAL_COVERAGES } from './Processes/Combine_coverages.nf'
