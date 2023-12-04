@@ -46,7 +46,6 @@ process DUPLICATION_ON_TARGET {
         publishDir "${baseDir}/Results/Reports/${params.batch}", mode: 'copy'
         container = "docker://kobedr/bismark_alignment_utils:latest"
         input:
-        path regions
         tuple val(sample), path(bam1), path(bai1), path(bam2), path(bai2)
 
         output:
