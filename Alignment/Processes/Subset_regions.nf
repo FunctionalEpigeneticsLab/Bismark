@@ -47,7 +47,7 @@ process DUPLICATION_ON_TARGET {
         container = "docker://kobedr/bismark_alignment_utils:latest"
         input:
         path regions
-        tuple val(sample), path(bam)
+        tuple val(sample), path(bam1), path(bai1), path(bam2), path(bai2)
 
         output:
         path "*.tsv"
@@ -55,7 +55,7 @@ process DUPLICATION_ON_TARGET {
 
         script:
         """
-        echo -e "Deduplicated_reads\\t\$(samtools view -@ ${task.cpus} *deduplicated* | wc -l)" > on_target_duplic_rate_${sample}.tsv
-        echo -e "Duplicated_reads\\t\$(samtools view -@ ${task.cpus} *deduplicated* | wc -l)" > on_target_duplic_rate_${sample}.tsv
+        echo -e "Deduplicated_reads\\t\$(samtools view -@ ${task.cpus} *deduplicated*.bam | wc -l)" > on_target_duplic_rate_${sample}.tsv
+        echo -e "Duplicated_reads\\t\$(samtools view -@ ${task.cpus} *deduplicated*.bam | wc -l)" > on_target_duplic_rate_${sample}.tsv
         """
 }
