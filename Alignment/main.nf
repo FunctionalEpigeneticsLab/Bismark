@@ -89,7 +89,8 @@ workflow {
         sort_ch = SORT(align_ch)
         DEDUPLICATE(sort_ch)
         deduplicate_ch=DEDUPLICATE.out.bam_files
-        puc_lambda_ch = GET_PUC_LAMBDA(deduplicate_ch.collect(), scripts)
+        deduplicate_ch2=DEDUPLICATE.out.bam_file2
+        puc_lambda_ch = GET_PUC_LAMBDA(deduplicate_ch2.collect(), scripts)
         deduplicate_report_ch=DEDUPLICATE.out.reports
         if(params.regions != ''){
         on_targ_ch=COMPUTE_ON_TARGET(params.regions, align_ch.collect())
