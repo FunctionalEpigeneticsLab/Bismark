@@ -3,7 +3,7 @@ process EXTRACT {
         publishDir "${baseDir}/Results/Methextracts/${params.batch}", mode: 'copy'
         container = "docker://nfcore/methylseq:latest"
         input:
-        path bam_file
+        tuple val(sample), path(bam_file)
         output:
         path "*.bedGraph.gz", emit: bedgraphs
         path "*.cov.gz", emit: coverages
