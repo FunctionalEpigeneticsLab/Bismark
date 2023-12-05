@@ -6,7 +6,7 @@ process DEDUPLICATE {
         input:
         tuple val(sample), path(bam_file)
         output:
-        path "*.deduplicated.bam", emit: bam_files
+        tuple val(sample), path "*.deduplicated.bam", emit: bam_files
         path "*.txt", emit: reports
 
         script:
