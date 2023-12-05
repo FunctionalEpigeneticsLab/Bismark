@@ -45,6 +45,7 @@ process DUPLICATION_ON_TARGET {
         tag "Computing on target duplication..."
         publishDir "${baseDir}/Results/Reports/${params.batch}", mode: 'copy'
         container = "docker://kobedr/bismark_alignment_utils:latest"
+
         input:
         tuple val(sample), path(bam1), path(bai1), path(bam2), path(bai2)
 
@@ -54,7 +55,7 @@ process DUPLICATION_ON_TARGET {
 
         script:
         """
-        echo -e "Deduplicated_reads\\t\$(samtools view -@ ${task.cpus} *deduplicated*.bam | wc -l)" > on_target_duplic_rate_${sample}.tsv
-        echo -e "Duplicated_reads\\t\$(samtools view -@ ${task.cpus} *deduplicated*.bam | wc -l)" > on_target_duplic_rate_${sample}.tsv
+        echo -e "Deduplicated_reads\\t\$(samtools view -@ ${task.cpus} $bam2  | wc -l)" > on_target_duplic_rate_${sample}.tsv
+        echo -e "Duplicated_reads\\t\$(samtools view -@ ${task.cpus} $bam1 | wc -l)" > on_target_duplic_rate_${sample}.tsv
         """
 }
