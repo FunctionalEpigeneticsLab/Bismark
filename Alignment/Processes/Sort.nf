@@ -6,7 +6,7 @@ process SORT {
         tuple val(sample), path(bam_file)
 
         output:
-        tuple val(sample), path "${bam_file}"
+        tuple val(sample), path("${bam_file}")
 
         script:
         """

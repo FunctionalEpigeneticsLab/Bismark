@@ -4,7 +4,7 @@ process DEPTH_OF_COVERAGE {
         container = "docker://kobedr/bismark_alignment_utils:latest"
         input:
         path regions
-        tuple path(bam), path(bai)
+        tuple val(sample) path(bam), path(bai)
         path index
 
 
