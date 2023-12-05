@@ -96,7 +96,7 @@ workflow {
         on_targ_ch=COMPUTE_ON_TARGET(params.regions, align_ch.collect())
         subs_ch = REGIONAL_SUBSET(params.regions, deduplicate_ch)
         subs2_ch = REGIONAL_SUBSET_DUPLICATED(params.regions, align_ch)
-        subs2_ch.join(subs_ch)
+        subs2_ch = subs2_ch.join(subs_ch)
         DUPLICATION_ON_TARGET(subs2_ch)
         doc_ch = DEPTH_OF_COVERAGE(params.regions, subs_ch, params.bismark_index)
         reg_reads_ch = REGIONAL_READS(subs_ch.collect())
