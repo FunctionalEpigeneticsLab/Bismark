@@ -7,7 +7,7 @@ process REGIONAL_SUBSET {
         tuple val(sample), path(bam)
 
         output:
-        tuple val(sample), path("subset*.bam"), path("subset*.bai"), emit reg_sub
+        tuple val(sample), path("subset*.bam"), path("subset*.bai"), emit: reg_sub
         tuple path("subset*.bam"), path("subset*.bai"), emit: only_bam_files
 
 
