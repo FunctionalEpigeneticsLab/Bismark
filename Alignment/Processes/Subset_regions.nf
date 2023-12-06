@@ -7,7 +7,9 @@ process REGIONAL_SUBSET {
         tuple val(sample), path(bam)
 
         output:
-        tuple val(sample), path("subset*.bam"), path("subset*.bai")
+        tuple val(sample), path("subset*.bam"), path("subset*.bai"), emit reg_sub
+        tuple path("subset*.bam"), path("subset*.bai"), emit: only_bam_files
+
 
 
         script:
@@ -56,6 +58,6 @@ process DUPLICATION_ON_TARGET {
         script:
         """
         echo -e "Deduplicated_reads\\t\$(samtools view -@ ${task.cpus} $bam2  | wc -l)" > on_target_duplic_rate_${sample}.tsv
-        echo -e "Duplicated_reads\\t\$(samtools view -@ ${task.cpus} $bam1 | wc -l)" > on_target_duplic_rate_${sample}.tsv
+        echo -e "Duplicated_reads\\t\$(samtools view -@ ${task.cpus} $bam1 | wc -l)" >> on_target_duplic_rate_${sample}.tsv
         """
 }

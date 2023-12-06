@@ -85,6 +85,7 @@ workflow {
         }
         BISMARK_ALIGN(params.bismark_index, trim_ch)
         align_ch=BISMARK_ALIGN.out.bam_files
+        align_bams_ch = BISMARK_ALIGN.out.only_bam_files
         align_report_ch=BISMARK_ALIGN.out.reports
         sort_ch = SORT(align_ch)
         DEDUPLICATE(sort_ch)
@@ -93,13 +94,15 @@ workflow {
         puc_lambda_ch = GET_PUC_LAMBDA(deduplicate_ch2.collect(), scripts)
         deduplicate_report_ch=DEDUPLICATE.out.reports
         if(params.regions != ''){
-        on_targ_ch=COMPUTE_ON_TARGET(params.regions, align_ch.collect())
-        subs_ch = REGIONAL_SUBSET(params.regions, deduplicate_ch)
+        on_targ_ch=COMPUTE_ON_TARGET(params.regions, align_bams_ch.collect())
+        REGIONAL_SUBSET(params.regions, deduplicate_ch)
+        subs_ch = REGIONAL_SUBSET.out.reg_sub
+        subs_only_bams = REGIONAL_SUBSET.out.only_bam_files
         subs2_ch = REGIONAL_SUBSET_DUPLICATED(params.regions, align_ch)
         subs2_ch = subs2_ch.join(subs_ch)
         DUPLICATION_ON_TARGET(subs2_ch)
         doc_ch = DEPTH_OF_COVERAGE(params.regions, subs_ch, params.bismark_index)
-        reg_reads_ch = REGIONAL_READS(subs_ch.collect())
+        reg_reads_ch = REGIONAL_READS(subs_only_bams.collect())
         comb_cov_ch = COMBINE_MEAN_REGIONAL_COVERAGES(doc_ch.collect(), scripts)
         }
         EXTRACT(deduplicate_ch)

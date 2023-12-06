@@ -8,6 +8,7 @@ process BISMARK_ALIGN {
 
         output:
         tuple val(sample), path("*_bismark_bt2_pe.bam"), emit: bam_files
+        path("*_bismark_bt2_pe.bam"), emit: only_bam_files
         path "*.txt", emit: reports
         script:
         """
