@@ -109,7 +109,7 @@ workflow {
         extract_coverages_ch = EXTRACT.out.coverages
         extract_report_ch = EXTRACT.out.reports
         reports_ch=extract_report_ch
-        reports_ch=reports_ch.mix(align_report_ch, deduplicate_report_ch, align_ch, deduplicate_ch)
+        reports_ch=reports_ch.mix(align_report_ch, deduplicate_report_ch, align_bams_ch, deduplicate_ch2)
 
         REPORTSUMM(reports_ch.collect())
         total_report_ch = REPORTSUMM.out.reports
