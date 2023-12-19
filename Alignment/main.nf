@@ -51,6 +51,8 @@ include { EXTRACT } from './Processes/Methylation_extract.nf'
 include { MULTIFASTQC } from './Processes/MultifastQC.nf'
 include { REPORTSUMM } from './Processes/ReportSummary.nf'
 include { SORT } from './Processes/Sort.nf'
+include { SORT_AND_INDEX } from './Processes/Sort.nf'
+
 include { TRIM } from './Processes/Trim_galore.nf'
 include { GET_PUC_LAMBDA } from './Processes/Get_puc_lambda.nf'
 if(params.regions==''){
@@ -90,6 +92,8 @@ workflow {
         sort_ch = SORT(align_ch)
         DEDUPLICATE(sort_ch)
         deduplicate_ch=DEDUPLICATE.out.bam_files
+        sort_and_indexed_ch = SORT_AND_INDEX(deduplicate_ch)
+
         deduplicate_ch2=DEDUPLICATE.out.bam_file2
         puc_lambda_ch = GET_PUC_LAMBDA(deduplicate_ch2.collect(), scripts)
         deduplicate_report_ch=DEDUPLICATE.out.reports
