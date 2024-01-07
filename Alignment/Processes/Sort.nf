@@ -27,7 +27,7 @@ process SORT_AND_INDEX {
 
         script:
         """
-        samtools sort -@ ${task.cpus} -n $bam_file > tmp
+        samtools sort -@ ${task.cpus} $bam_file > tmp
         mv tmp $bam_file
         samtools index $bam_file
         """
