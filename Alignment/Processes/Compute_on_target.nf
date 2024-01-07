@@ -5,6 +5,7 @@ process COMPUTE_ON_TARGET {
         input:
         path regions
         path "*"
+        path scripts
 
         output:
         path "on_target.tsv"
@@ -12,6 +13,6 @@ process COMPUTE_ON_TARGET {
 
         script:
         """
-        Rscript $baseDir/Scripts/get_on_target.r . $regions
+        Rscript ./Scripts/get_on_target.r . $regions
         """
 }

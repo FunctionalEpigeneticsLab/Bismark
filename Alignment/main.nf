@@ -98,7 +98,7 @@ workflow {
         puc_lambda_ch = GET_PUC_LAMBDA(deduplicate_ch2.collect(), scripts)
         deduplicate_report_ch=DEDUPLICATE.out.reports
         if(params.regions != ''){
-        on_targ_ch=COMPUTE_ON_TARGET(params.regions, align_bams_ch.collect())
+        on_targ_ch=COMPUTE_ON_TARGET(params.regions, align_bams_ch.collect(), scripts)
         REGIONAL_SUBSET(params.regions, deduplicate_ch)
         subs_ch = REGIONAL_SUBSET.out.reg_sub
         subs_only_bams = REGIONAL_SUBSET.out.only_bam_files
@@ -114,7 +114,7 @@ workflow {
         extract_report_ch = EXTRACT.out.reports
         reports_ch=extract_report_ch
         reports_ch=reports_ch.mix(align_report_ch, deduplicate_report_ch, align_bams_ch, deduplicate_ch2)
-
+        reports_ch.view()
         REPORTSUMM(reports_ch.collect())
         total_report_ch = REPORTSUMM.out.reports
         if(params.regions != ''){
