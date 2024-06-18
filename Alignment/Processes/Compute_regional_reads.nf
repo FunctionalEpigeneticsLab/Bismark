@@ -15,5 +15,6 @@ process REGIONAL_READS {
         do
         echo -e "$i\\t$(samtools view $i | wc -l)" >> reads_on_target.tsv &
         done
+        wait
         '''
 }
