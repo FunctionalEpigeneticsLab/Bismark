@@ -57,6 +57,7 @@ readBismarkCoverage<-function( location,sample.id,assembly="unknown",treatment,
 
 }
 reports = read.delim('bismark_summary_report.txt')
+reports = reports[reports$Aligned.Reads>100,]
 reports$Sample = unlist(lapply(reports$File, function(x){paste(unlist(strsplit(x, split = '_'))[1:2],collapse = '_')}))
 rownames(reports) <- reports$Sample
 both = reports
