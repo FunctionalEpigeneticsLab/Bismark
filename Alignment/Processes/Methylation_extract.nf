@@ -10,7 +10,7 @@ process EXTRACT {
         path "*.txt", emit: reports
         script:
         """
-        bismark_methylation_extractor --paired-end -gzip --multicore ${task.cpus} --bedGraph $bam_file
+        bismark_methylation_extractor --paired-end -gzip --multicore 5 --bedGraph $bam_file
         """
 
 }
