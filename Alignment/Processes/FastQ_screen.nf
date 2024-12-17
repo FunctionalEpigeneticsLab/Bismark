@@ -11,6 +11,6 @@ process FASTQ_SCREEN {
         script:
         """
         export PATH=/staging/leuven/stg_00064/Kobe_2/miniconda3/bin:$PATH
-        fastq_screen --bisulfite --outdir . --threads ${task.cpus} $file1 $file2
+        /opt/conda/bin/fastq_screen --bisulfite --outdir . --threads ${task.cpus} $file1 $file2
         """
 }
