@@ -10,6 +10,6 @@ process FASTQ_SCREEN {
         script:
         """
         export PATH=/staging/leuven/stg_00064/Kobe_2/miniconda3/bin:$PATH
-        fastq_screen --conf /lustre1/project/stg_00064/Kobe_2/FastQ_Screen_Genomes/fastq_screen.conf --bisulfite --outdir . --threads ${task.cpus} $file1 $file2
+        fastq_screen --conf /lustre1/project/stg_00064/Kobe_2/FastQ_Screen_Genomes/FastQ_Screen_Genomes_Bisulfite/fastq_screen.conf --bisulfite --outdir . --threads ${task.cpus} $file1 $file2
         """
 }
